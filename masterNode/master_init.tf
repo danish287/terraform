@@ -6,9 +6,9 @@ provider "aws" {
 }
 
 # create security group so we can ssh from any machine at initialization
-resource "aws_security_group" "my_SSH" {
+resource "aws_security_group" "master_SSH" {
   description = "Allow ALL SSH traffic through"
-  name = "ssh-proj2"
+  name = "ssh-master"
 
   ingress {
     from_port   = 0 
@@ -39,9 +39,9 @@ resource "aws_instance" "master" {
   instance_type = "t2.micro"
 
 # create security group to be able to ssh
-  security_groups = [aws_security_group.my_SSH.name]
+  security_groups = [aws_security_group.master_SSH.name]
 
-# establish ssh connection to machine + change out username to 'golorado'
+# establish ssh connection to machine 
   connection {
     type        = "ssh"
     user        = "ubuntu"
