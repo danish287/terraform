@@ -57,6 +57,18 @@ resource "aws_instance" "master" {
     host        = self.public_ip
   }
 
+# script file to run inside our machine
+  provisioner "file" {
+    source      = "masterNode/masterSetup.sh"
+    destination = "/tmp/masterSetup.sh"
+  }
+
+# terraform file for master
+  provisioner "file" {
+    source      = "setUp.tf"
+    destination = "/home/ubuntu/terraform/setUp.tf"
+  }
+
 # save ip address of instance in a txt file to save to our machine
   provisioner "local-exec" {
     command = "echo ${aws_instance.master.public_ip} > ip_address.txt"
@@ -65,7 +77,8 @@ resource "aws_instance" "master" {
 # run these commands inside our instance
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update",
+      "sudo /bin/bash /tmp/masterSetup.sh",
+     
     ]
   }
 
