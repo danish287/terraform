@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # export my machine IP
-export MYIP=`curl ifconfig.me`
-echo $MYIP
+# export MYIP=`curl ifconfig.me`
+# echo $MYIP
 
 #initialize a docker swarm 
 #docker swarm join-token worker
 echo Initializing Docker swarm...
-sudo docker swarm init --advertise-addr $MYIP
+sudo docker swarm init
 
 echo Retrieving docker continers...
 sudo docker pull felicianoej/arkcontroller

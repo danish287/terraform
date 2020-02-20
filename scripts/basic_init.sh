@@ -19,9 +19,10 @@ echo Installing Java development kit...
 #download java development kit
 sudo apt -y install openjdk-8-jdk 
 #download jenkins with a key
-sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+# sudo wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
 #append this to sources list
-sudo echo -e "deb https://pkg.jenkins.io/debian binary/\n" >> /etc/apt/sources.list
+# sudo echo -e "deb https://pkg.jenkins.io/debian binary/\n" >> /etc/apt/sources.list
 
 
 echo Updating again...
